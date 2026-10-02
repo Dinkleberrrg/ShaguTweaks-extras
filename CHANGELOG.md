@@ -1,12 +1,12 @@
 # Changelog OctoWoW – ShaguTweaks-extras
 
-> Branch `octowow` = Stand aus Henrys Installation „OctoWoW – HD Upgrade“ (WoW 1.12). Eigene Anpassungen sind im Code mit `-- [patch]` markiert.
+> Branch `octowow` = the state from Henry's "OctoWoW – HD Upgrade" install (WoW 1.12). Own changes are marked with `-- [patch]` in the code.
 
-**Basis:** shagu/ShaguTweaks-extras `e5140e5` (2025-08-15)
+**Base:** shagu/ShaguTweaks-extras `e5140e5` (2025-08-15)
 
-## Änderungen
+## Changes
 
-### mods/worldmap-reveal.lua – Kartenaufdeckung für Turtle/Octo-Zonen
-- **Zonentabellen ersetzt:** Die Overlay-Geometrie (Breite, Höhe, Offset) für 53 Zonen wurde durch die Werte des Turtle/OctoWoW-Clients ersetzt. Dadurch sind auch neue Gebiete wie „Anchor's Edge“, „Sparkwater Port“ oder „Ruins of Zul'Rasaz“ enthalten.
-- **Echte Client-Geometrie hat Vorrang:** Für bereits erkundete Overlays liefert der Client die korrekten Maße. Das Modul hat diese bisher verworfen und auch dort die fest eingetragene Tabelle benutzt, die bei server-eigenen Zonen oft falsch ist. Jetzt werden die Client-Werte verwendet (`realgeom`).
-- **Doppelt belegte Positionen werden übersprungen:** Tabelleneinträge, die sich eine Position teilen, stapelten Kartenteile übereinander (z. B. Thalassian Highlands). Solche unerkundeten Overlays werden nicht mehr gezeichnet, statt falsch.
+### mods/worldmap-reveal.lua – map reveal for Turtle/Octo zones
+- **Zone tables replaced:** The overlay geometry (width, height, offset) of 53 zones was replaced with the values from the Turtle/OctoWoW client. This also covers new areas such as "Anchor's Edge", "Sparkwater Port" and "Ruins of Zul'Rasaz".
+- **Real client geometry wins:** For overlays you have already explored, the client reports the correct size. The module used to discard it and use the hard-coded table instead, which is often wrong for server-specific zones. The client values are now used (`realgeom`).
+- **Overlapping positions are skipped:** Table entries that share a position stacked map tiles on top of each other (e.g. Thalassian Highlands). Such unexplored overlays are no longer drawn rather than drawn wrong.
