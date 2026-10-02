@@ -4,6 +4,14 @@
 
 **Base:** shagu/ShaguTweaks-extras `e5140e5` (2025-08-15)
 
+
+## Releases
+
+Version scheme: `<upstream version>-octo.<n>`. Each release is a git tag `v<version>`; older versions can be downloaded from the tag page on GitHub.
+
+### 2025.08.15-octo.1 – 2026-10-03
+- First tagged release with the changes listed below.
+
 ## Changes
 
 ### mods/worldmap-reveal.lua – map reveal for Turtle/Octo zones
