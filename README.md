@@ -1,6 +1,6 @@
-## OctoWoW changes compared to the original
+## Notable changes
 
-Original: **shagu/ShaguTweaks-extras**. This fork (by Dinkleberrrg) changes:
+Fork of **shagu/ShaguTweaks-extras**.
 
 - World map reveal: zone overlay data replaced with Turtle/OctoWoW client values (incl. new zones).
 - World map reveal: real client geometry is used for explored areas; overlapping broken entries are skipped.
