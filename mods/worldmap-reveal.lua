@@ -213,10 +213,10 @@ module.enable = function(self)
     local numOverlays = GetNumMapOverlays()
 
     local alreadyknown = {}
-    -- [patch] realgeom haelt die echte Geometrie fest, die der Client fuer
-    -- bereits erkundete Overlays liefert. Das Modul hat sie bisher verworfen
-    -- und auch fuer erkundete Gebiete die hartkodierte Tabelle benutzt - bei
-    -- server-eigenen Zonen ist die oft falsch.
+    -- [patch] realgeom keeps the real geometry the client reports for
+    -- already explored overlays. The module used to discard it and use the
+    -- hard-coded table for explored areas too - for server-specific zones
+    -- that is often wrong.
     local realgeom = {}
     for i=1, numOverlays do
       local textureName, textureWidth, textureHeight, offsetX, offsetY, mapPointX, mapPointY = GetMapOverlayInfo(i)
@@ -232,10 +232,10 @@ module.enable = function(self)
 
     local zoneData = this.overlayData[mapFileName]
 
-    -- [patch] Eintraege der hartkodierten Tabelle, die sich eine Position
-    -- teilen, sind unbrauchbar - sie stapeln Kartenteile uebereinander
-    -- (Thalassian Highlands: drei Overlays auf 0:0, drei auf 256:256).
-    -- Solche werden uebersprungen, sofern der Client nichts Echtes liefert.
+    -- [patch] Entries of the hard-coded table that share a position are
+    -- unusable - they stack map tiles on top of each other
+    -- (Thalassian Highlands: three overlays at 0:0, three at 256:256).
+    -- Those are skipped unless the client reports real values.
     local seenpos, badpos = {}, {}
     for i, hash in ipairs(zoneData) do
       local tn, tw, th, ox, oy = unpack_hash(prefix, hash)
@@ -251,9 +251,9 @@ module.enable = function(self)
     for i, hash in ipairs(zoneData) do
       local textureName, textureWidth, textureHeight, offsetX, offsetY, mapPointX, mapPointY, name = unpack_hash(prefix, hash)
 
-      -- [patch] Client schlaegt Tabelle: fuer erkundete Overlays die echten
-      -- Werte nehmen. Fuer unerkundete auf doppelt belegter Position lieber
-      -- gar nichts zeichnen als etwas Falsches.
+      -- [patch] client beats table: use the real values for explored overlays.
+      -- For unexplored ones on a doubly used position, draw nothing rather
+      -- than something wrong.
       local real = realgeom[textureName]
       local unusable = false
       if real then
